@@ -1,10 +1,18 @@
+const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             title: "Webpack demo",
-        })
+        }),
+
+        // Ignore node_modules so CPU usage with poll
+        // Watching drops significantly
+        // new webpack.WatchIgnorePlugin([
+        //     path.join(__dirname, "node_modules")
+        // ])
     ],
     devServer: {
         // display only errors to reduce the amount of output
@@ -23,6 +31,14 @@ module.exports = {
 
         open: true, // Open the page in browser
         overlay: true,
+
+        // POLLING INSTEAD OF  WATCHING
+        // 
+        // Delay the rebuild after the first change
+        // aggregateTimeout: 300,
+        
+        // Poll using interval (in ms, accepts boolean too)
+        // poll: 1000,
     },
 
 }
