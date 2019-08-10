@@ -1,3 +1,40 @@
+// BAB 3 - Memisah-misahkan konfigurasi webpack
+
+const merge = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const parts = require("./webpack.parts");
+
+const commonConfig = merge([
+    {
+        plugins: [
+            new HtmlWebpackPlugin({
+                title: "Webpack Demo",
+            })
+        ]
+    }
+]);
+
+const productionConfig = merge([]);
+
+const developmentConfig = merge([
+    parts.devServer({
+        host: process.env.Host,
+        port: process.env.Port = 1989,
+    })
+]);
+
+module.exports = mode => {
+    if(mode === "production") {
+        return merge(commonConfig, productionConfig, { mode });
+    }
+
+    return merge(commonConfig, developmentConfig, { mode })
+};
+
+// BAB 1 - BAB 2
+
+/*
+
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -42,3 +79,5 @@ module.exports = {
     },
 
 }
+
+*/
