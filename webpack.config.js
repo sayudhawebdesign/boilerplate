@@ -5,10 +5,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Webpack demo",
         })
-    ]
-}
-
-module.exports = {
+    ],
     devServer: {
         // display only errors to reduce the amount of output
         stats: "errors-only",
@@ -22,8 +19,10 @@ module.exports = {
         // unlike default 'localhost'.
 
         host: process.env.HOST, // Defaults to localhost
-        port: process.env.PORT, // Defaults to 8080
+        port: process.env.PORT=1989, // Defaults to 8080
 
         open: true, // Open the page in browser
+        overlay: true,
     },
+
 }
